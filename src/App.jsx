@@ -1,9 +1,11 @@
-import { Grommet, Box, TextInput } from "grommet"
+import { Grommet, Box, TextInput, Heading } from "grommet"
 import React, { Component } from "react"
 
 import theme from "./theme"
 import Graph from "./Graph"
 import Slider from "./Slider"
+import Header from "./Header"
+import RateTable from "./RateTable"
 
 class App extends Component {
   state = {
@@ -76,11 +78,17 @@ class App extends Component {
     const { income } = this.state
     return (
       <Grommet theme={theme}>
-        <Box width="large" margin={{ left: "auto", right: "auto" }}>
+        <Header />
+        <Box
+          width="large"
+          margin={{ left: "auto", right: "auto", top: "30px" }}
+        >
+          <Heading level={4}>Your salary</Heading>
           <Box direction="row" align="center" justify="center">
             <Box width="small">
               <TextInput
                 value={income}
+                style={{ textAlign: "right" }}
                 placeholder="Enter your income"
                 onChange={event => {
                   this.setIncome(event.target.value)
@@ -96,8 +104,8 @@ class App extends Component {
               />
             </Box>
           </Box>
-
           <Graph state={this.state} />
+          <RateTable state={this.state} />
         </Box>
       </Grommet>
     )
